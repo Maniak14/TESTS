@@ -190,6 +190,47 @@
         font-size: 0.9rem;
     }
 
+    .suggestion-form label input[type="checkbox"] {
+      transform: scale(1.2);
+      accent-color: #4caf50;
+    }
+
+    input[disabled] {
+      cursor: not-allowed;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .form-row input#prenom {
+      flex: 0 0 200px; /* ✅ champ plus petit */
+      min-width: 150px;
+    }
+
+    .ou-label {
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .checkbox-inline {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .checkbox-inline input[type="checkbox"] {
+      transform: scale(1.2);
+      accent-color: #4caf50;
+    }
+
+
     @keyframes fadeDown {
       from { transform: translateY(-30px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
@@ -246,9 +287,20 @@
         <h2>💡 Une idée pour améliorer la restauration ?</h2>
         <p>Tu peux proposer une amélioration !</p>
         <form id="suggestionForm">
-        <textarea id="suggestion" name="suggestion" placeholder="Ta suggestion..." required></textarea>
-        <button type="submit">Envoyer la suggestion</button>
-        <p id="formStatus"></p>
+          <div class="form-row align-center">
+            <input type="text" id="prenom" name="prenom" placeholder="Ton prénom">
+            <span class="ou-label">OU</span>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="anonyme" name="anonyme">
+              Je souhaite rester anonyme
+            </label>
+          </div>
+          
+          <input type="text" id="classe" name="classe" placeholder="Ta classe (ex : 2nde 1)" required>
+          
+          <textarea id="suggestion" name="suggestion" placeholder="Ta suggestion..." required></textarea>
+          <button type="submit">Envoyer la suggestion</button>
+          <p id="formStatus"></p>
         </form>
     </section>
   
@@ -317,24 +369,31 @@
   <script>
     document.getElementById('suggestionForm').addEventListener('submit', function(e) {
       e.preventDefault();
+  
+      const prenom = document.getElementById('prenom').value.trim();
+      const classe = document.getElementById('classe').value.trim();
       const suggestion = document.getElementById('suggestion').value.trim();
+      const isAnon = document.getElementById('anonyme').checked;
       const status = document.getElementById('formStatus');
   
-      if (!suggestion) {
-        status.textContent = "Merci de remplir tous les champs.";
+      // 💡 Vérification personnalisée
+      if (!classe || !suggestion || (!isAnon && prenom === "")) {
+        status.textContent = "Merci de remplir tous les champs obligatoires.";
         status.style.color = "orange";
         return;
       }
   
-      
       const webhookURL = "https://discord.com/api/webhooks/1353856173291606136/Hj7PWQ3BD66dNo3_YPeH9kPYeN22t2N2mZTSpj_pgjdQMi3N87whX_vgKxQHUIhOUEIL";
+  
+      let content = `📩 Nouvelle suggestion de la classe **${classe}**\n`;
+      content += isAnon
+        ? `🙈 **Suggestion anonyme :**\n${suggestion}`
+        : `👤 **${prenom}** propose :\n${suggestion}`;
   
       fetch(webhookURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          content: `📥 Nouvelle suggestion reçue : ${suggestion}`
-        })
+        body: JSON.stringify({ content })
       })
       .then(res => {
         if (res.ok) {
@@ -350,6 +409,20 @@
         status.style.color = "red";
       });
     });
-  </script>  
+  </script>
+  <script>
+    const checkbox = document.getElementById('anonyme');
+    const prenomInput = document.getElementById('prenom');
+  
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        prenomInput.disabled = true;
+        prenomInput.style.opacity = "0.5";
+      } else {
+        prenomInput.disabled = false;
+        prenomInput.style.opacity = "1";
+      }
+    });
+  </script>
 </body>
 </html>
