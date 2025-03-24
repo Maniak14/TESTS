@@ -129,6 +129,39 @@
       from { transform: translateY(-30px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+
+    /* ✅ Responsive mobile */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .faq-container {
+        padding: 0 0.5rem;
+      }
+
+      .faq {
+        padding: 1rem 1.2rem;
+        border-radius: 15px;
+      }
+
+      .faq h2 {
+        font-size: 1.1rem;
+      }
+
+      .faq h2::after {
+        font-size: 1.5rem;
+      }
+
+      .faq p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+      }
+    }
   </style>
 </head>
 <body>
@@ -143,16 +176,16 @@
   </header>
 
   <main class="faq-container">
-    <div class="faq"><h2>🍽️ Comment améliorer l’expérience au self ?</h2><p>En rendant les parcours plus fluides, etc.</p></div>
-    <div class="faq"><h2>🚧 Quels sont les plus gros défis ?</h2><p>Offrir des repas équilibrés, etc.</p></div>
-    <div class="faq"><h2>💰 Comment est défini le budget ?</h2><p>Le conseil régional fournit une base, etc.</p></div>
-    <div class="faq"><h2>🌿 D’où viennent les produits ?</h2><p>Principalement de fournisseurs locaux, etc.</p></div>
-    <div class="faq"><h2>🗑️ Comment lutter contre le gaspillage ?</h2><p>En ajustant les quantités, etc.</p></div>
-    <div class="faq"><h2>🏗️ Quelles améliorations sont envisagées ?</h2><p>Un agrandissement du réfectoire, etc.</p></div>
-    <div class="faq"><h2>✅ La qualité des repas est-elle satisfaisante ?</h2><p>Oui, avec des retours, etc.</p></div>
-    <div class="faq"><h2>🎨 Les repas sont-ils variés ?</h2><p>Oui, mais cela dépend aussi de la curiosité, etc.</p></div>
-    <div class="faq"><h2>🔥 Les plats préférés ?</h2><p>Frites, burgers, etc. Les lentilles moins aimées.</p></div>
-    <div class="faq"><h2>⏱️ Le temps de repas est-il suffisant ?</h2><p>3 services actuellement, etc.</p></div>
+    <div class="faq"><h2>🍽️ Comment améliorer l’expérience au self ?</h2><p>En rendant les parcours plus fluides, en affichant clairement les menus, en aménageant des zones calmes et en réduisant le temps d’attente grâce à une meilleure organisation.</p></div>
+    <div class="faq"><h2>🚧 Quels sont les plus gros défis ?</h2><p>Offrir des repas équilibrés, satisfaire tous les goûts, gérer les quantités et respecter des règles sanitaires et budgétaires strictes.</p></div>
+    <div class="faq"><h2>💰 Comment est défini le budget ?</h2><p>Le conseil régional fournit une base. Le lycée ajuste selon le nombre de repas servis, les tarifs et les dépenses réelles.</p></div>
+    <div class="faq"><h2>🌿 D’où viennent les produits ?</h2><p>Principalement de fournisseurs locaux. Une attention particulière est portée aux produits bio, végétariens et de saison.</p></div>
+    <div class="faq"><h2>🗑️ Comment lutter contre le gaspillage ?</h2><p>En ajustant les quantités au service, en proposant des portions flexibles, et en sensibilisant élèves et personnel avec les éco-délégués.</p></div>
+    <div class="faq"><h2>🏗️ Quelles améliororations sont envisagées ?</h2><p>Un agrandissement du réfectoire serait idéal pour limiter l’encombrement et permettre des repas plus détendus.</p></div>
+    <div class="faq"><h2>✅ La qualité des repas est-elle satisfaisante ?</h2><p>Oui, avec des retours pris en compte et des dégustations régulières pour ajuster les plats.</p></div>
+    <div class="faq"><h2>🎨 Les repas sont-ils variés ?</h2><p>Oui, mais cela dépend aussi de la curiosité alimentaire des élèves. Des menus originaux sont proposés chaque semaine.</p></div>
+    <div class="faq"><h2>🔥 Les plats préférés ?</h2><p>Frites, burgers et hachis plébiscités. Les légumes verts et lentilles sont souvent boudés, même s’ils sont bien cuisinés.</p></div>
+    <div class="faq"><h2>⏱️ Le temps de repas est-il suffisant ?</h2><p>Actuellement 3 services sont nécessaires. Une meilleure gestion de l’espace et du flux permettrait d’allonger le temps à table.</p></div>
   </main>
 
   <footer>
