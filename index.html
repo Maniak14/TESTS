@@ -141,6 +141,60 @@
       margin-top: auto;
     }
 
+    .suggestion-form {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 1.5rem;
+        border-radius: 15px;
+        max-width: 900px; /* ✅ plus étroit */
+        margin: 2rem auto;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    .suggestion-form h2 {
+        margin-bottom: 0.3rem;
+        font-size: 1.5rem;
+    }
+
+    .suggestion-form p {
+        margin-bottom: 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    .suggestion-form input,
+    .suggestion-form textarea {
+        width: 100%;
+        margin: 0.4rem 0;
+        padding: 0.6rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        resize: vertical;
+    }
+
+    .suggestion-form button {
+        margin-top: 1rem;
+        background-color: #4ba54e;
+        color: white;
+        padding: 0.6rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .suggestion-form button:hover {
+        background-color: #45a049;
+    }
+
+    #formStatus {
+        margin-top: 0.8rem;
+        font-size: 0.9rem;
+    }
+
     @keyframes fadeDown {
       from { transform: translateY(-30px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
@@ -193,6 +247,17 @@
     🔎 Cette enquête a été menée par <strong>Jamy Garry</strong> et <strong>Doryan Ego</strong>, à partir d’un entretien avec <strong>Madame Arpin</strong>, membre de l’administration du lycée Jacquard.
   </section>
 
+  <section class="suggestion-form">
+    <h2>💡 Une idée pour améliorer la restauration ?</h2>
+    <p>Tu peux proposer une amélioration !</p>
+    <form id="suggestionForm">
+      <input type="text" id="prenom" name="prenom" placeholder="Ton prénom" required>
+      <textarea id="suggestion" name="suggestion" placeholder="Ta suggestion..." required></textarea>
+      <button type="submit">Envoyer la suggestion</button>
+      <p id="formStatus"></p>
+    </form>
+  </section>
+  
   <main class="faq-container">
     <div class="faq"><h2>🍽️ Comment améliorer l’expérience au restaurant scolaire ?</h2><p>Une meilleure organisation du service est primordiale. Lorsque chaque personnel connaît ses missions et que la coordination est fluide, cela permet un accueil efficace et agréable pour les élèves à chaque service.</p></div>
     <div class="faq"><h2>🚧 Quels sont les principaux défis pour le service de restauration ?</h2><p>Il faut à la fois respecter des normes strictes, proposer des repas équilibrés et satisfaire les goûts de tous les usagers. Cela demande beaucoup d’adaptation et une gestion précise au quotidien.</p></div>
@@ -256,5 +321,43 @@
       detectRetina: true
     });
   </script>
+  <script>
+    document.getElementById('suggestionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const prenom = document.getElementById('prenom').value.trim();
+      const suggestion = document.getElementById('suggestion').value.trim();
+      const status = document.getElementById('formStatus');
+  
+      if (!prenom || !suggestion) {
+        status.textContent = "Merci de remplir tous les champs.";
+        status.style.color = "orange";
+        return;
+      }
+  
+      // 🔁 Ton lien webhook ici :
+      const webhookURL = "https://discord.com/api/webhooks/1353856173291606136/Hj7PWQ3BD66dNo3_YPeH9kPYeN22t2N2mZTSpj_pgjdQMi3N87whX_vgKxQHUIhOUEIL";
+  
+      fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: `📥 Nouvelle suggestion de **${prenom}** :\n${suggestion}`
+        })
+      })
+      .then(res => {
+        if (res.ok) {
+          status.textContent = "✅ Suggestion envoyée avec succès ! Merci 🙏";
+          status.style.color = "lightgreen";
+          document.getElementById('suggestionForm').reset();
+        } else {
+          throw new Error("Erreur lors de l’envoi.");
+        }
+      })
+      .catch(err => {
+        status.textContent = "❌ Une erreur est survenue. Réessaye plus tard.";
+        status.style.color = "red";
+      });
+    });
+  </script>  
 </body>
 </html>
