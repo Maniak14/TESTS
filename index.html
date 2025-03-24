@@ -333,7 +333,7 @@
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          content: `📥 Nouvelle suggestion reçue :\n${suggestion}`
+          content: `📥 Nouvelle suggestion reçue : ${suggestion}`
         })
       })
       .then(res => {
