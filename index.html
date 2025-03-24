@@ -29,13 +29,13 @@
       background: #000;
     }
 
-    #particles-js {
+    #tsparticles {
       position: fixed;
       width: 100%;
       height: 100%;
-      z-index: -1;
       top: 0;
       left: 0;
+      z-index: -1;
     }
 
     header {
@@ -180,8 +180,8 @@
 </head>
 <body>
 
-  <!-- Fond animé -->
-  <div id="particles-js"></div>
+  <!-- Fond animé avec légumes -->
+  <div id="tsparticles"></div>
 
   <header>
     <h1>FAQ Restauration</h1>
@@ -189,28 +189,19 @@
   </header>
 
   <section class="enquete-info">
-    Cette enquête a été réalisée à partir d’un entretien avec <strong>Madame Harpin</strong>, membre de l’administration du lycée Jacquard.
+    🔎 Cette enquête a été réalisée à partir d’un entretien avec <strong>Madame Harpin</strong>, membre de l’administration du lycée Jacquard.
   </section>
 
   <main class="faq-container">
     <div class="faq"><h2>🍽️ Comment améliorer l’expérience au restaurant scolaire ?</h2><p>Une meilleure organisation du service est primordiale. Lorsque chaque personnel connaît ses missions et que la coordination est fluide, cela permet un accueil efficace et agréable pour les élèves à chaque service.</p></div>
-
     <div class="faq"><h2>🚧 Quels sont les principaux défis pour le service de restauration ?</h2><p>Il faut à la fois respecter des normes strictes, proposer des repas équilibrés et satisfaire les goûts de tous les usagers. Cela demande beaucoup d’adaptation et une gestion précise au quotidien.</p></div>
-
     <div class="faq"><h2>💰 Comment est établi le budget de la restauration ?</h2><p>Le budget est fondé sur une trame fournie par le Conseil régional. On y intègre les tarifs réglementaires et les prévisions de repas. Ensuite, des ajustements peuvent être faits en fonction des recettes réelles et des dépenses observées.</p></div>
-
     <div class="faq"><h2>🛒 Comment sont sélectionnés les produits et fournisseurs ?</h2><p>Les achats passent par une application officielle. On privilégie les produits locaux, bio et végétaux, en suivant une réglementation stricte imposée récemment.</p></div>
-
     <div class="faq"><h2>🗑️ Quelles actions sont menées contre le gaspillage alimentaire ?</h2><p>Des ajustements sont faits en fonction des effectifs annoncés. Les plats non servis peuvent être conservés quelques jours selon la réglementation. Le personnel adapte les quantités servies, mais certains gaspillages sont dus à des élèves qui prennent sans manger. Une collaboration avec les éco-délégués est envisagée pour sensibiliser davantage.</p></div>
-
     <div class="faq"><h2>🏗️ Quelles améliorations seraient utiles ?</h2><p>Un agrandissement du réfectoire est nécessaire, car l’espace est vite saturé. Cela permettrait de réduire le nombre de services et d’offrir des conditions de repas plus confortables.</p></div>
-
-    <div class="faq"><h2>✅ La qualité des repas est-elle satisfaisante ?</h2><p>Oui. Des dégustations sont faites régulièrement. Le personnel reste à l’écoute des remarques pour ajuster les plats. Par exemple, si une purée est trop poivrée, l’information peut être remontée pour éviter que cela ne se reproduise. Les retours sont pris en compte avec bienveillance.</p></div>
-
+    <div class="faq"><h2>✅ La qualité des repas est-elle satisfaisante ?</h2><p>Oui. Des dégustations sont faites régulièrement. Le personnel reste à l’écoute des remarques pour ajuster les plats. Par exemple, si une purée est trop poivrée, cela peut être signalé pour éviter que cela ne se reproduise.</p></div>
     <div class="faq"><h2>🎨 Les repas sont-ils variés et adaptés ?</h2><p>Les menus sont conçus pour être variés, mais l’acceptation dépend aussi de la curiosité alimentaire des élèves. Certains refusent de goûter par habitude ou par a priori, ce qui complique l’appréciation de la diversité proposée.</p></div>
-
     <div class="faq"><h2>🔥 Quels plats sont les plus ou les moins appréciés ?</h2><p>Les frites, kebabs et hachis parmentier sont très populaires. Les lentilles, petits pois ou certains légumes verts sont moins bien accueillis, souvent sans même être goûtés.</p></div>
-
     <div class="faq"><h2>⏱️ Le temps de repas est-il suffisant ?</h2><p>Le lycée fonctionne sur trois services entre 11h15 et 13h, faute d’espace. Les élèves mangent en moyenne en 30 minutes, parfois moins. Une extension du réfectoire permettrait de rendre les repas plus détendus et moins stressants.</p></div>
   </main>
 
@@ -218,6 +209,7 @@
     © 2025 – Projet des élèves du Lycée Jacquard | Enquête sur la restauration scolaire
   </footer>
 
+  <!-- Script questions toggle -->
   <script>
     document.querySelectorAll('.faq').forEach(item => {
       item.addEventListener('click', () => {
@@ -226,45 +218,40 @@
     });
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- tsParticles + images aliments -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
   <script>
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#ffffff" },
-        "shape": {
-          "type": "circle",
-          "stroke": { "width": 0, "color": "#000000" }
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: false },
+      background: { color: "#698057" },
+      particles: {
+        number: { value: 70 },
+        shape: {
+          type: "image",
+          image: [
+            { src: "/carotte.png", width: 32, height: 32 }, // carotte
+            { src: "/tomate.png", width: 32, height: 32 }, // tomate
+            { src: "/salade.png", width: 32, height: 32 }, // salade
+            { src: "/pain.png", width: 32, height: 32 },  // pain
+            { src: "/burger.png", width: 32, height: 32 },  // pain
+            { src: "/frites.png", width: 32, height: 32 },  // pain
+            { src: "/frites_1.png", width: 32, height: 32 },  // pain
+            { src: "/kebab.png", width: 32, height: 32 },  // pain
+            { src: "/soupe.png", width: 32, height: 32 },  // pain
+            { src: "/poulet.png.png", width: 32, height: 32 },  // pain
+            { src: "/poireau.png.png", width: 32, height: 32 }  // pain
+          ]
         },
-        "opacity": { "value": 0.5, "random": false },
-        "size": { "value": 3, "random": true },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#ffffff",
-          "opacity": 0.4,
-          "width": 1
+        size: { value: 24 },
+        move: {
+          enable: true,
+          speed: 1.2,
+          direction: "none",
+          outMode: "out"
         },
-        "move": {
-          "enable": true,
-          "speed": 3,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "bounce": false
-        }
+        opacity: { value: 1 }
       },
-      "interactivity": {
-        "events": {
-          "onhover": { "enable": true, "mode": "repulse" },
-          "onclick": { "enable": true, "mode": "push" }
-        },
-        "modes": {
-          "repulse": { "distance": 100 },
-          "push": { "particles_nb": 4 }
-        }
-      },
-      "retina_detect": true
+      detectRetina: true
     });
   </script>
 </body>
