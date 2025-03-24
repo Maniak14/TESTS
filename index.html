@@ -200,37 +200,30 @@
     }
 
     .form-row {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-  }
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
 
-  .form-row input#prenom {
-    width: 180px; /* ✅ Forcé pour iPhone */
-    max-width: 100%;
-    height: 38px;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: none;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-  }
+    .form-row input#prenom {
+      flex: 0 0 200px;
+      min-width: 150px;
+    }
 
-  .ou-label {
-    font-size: 0.95rem;
-    color: #fff;
-  }
+    .ou-label {
+      font-size: 0.95rem;
+      color: #fff;
+    }
 
-  .checkbox-inline {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.95rem;
-    white-space: nowrap;
-  }
+    .checkbox-inline {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
 
     /* ✅ Petit style case à cocher */
     .checkbox-inline input[type="checkbox"] {
@@ -245,6 +238,11 @@
     }
 
     @media (max-width: 768px) {
+
+    
+      .ou-label {
+        display: none; /* ✅ on l'affiche sur mobile */
+      }
       header h1 {
         font-size: 2rem;
       }
@@ -273,20 +271,6 @@
       .faq p {
         font-size: 0.95rem;
         line-height: 1.4;
-      }
-
-      .form-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .checkbox-inline {
-        justify-content: flex-start;
-        padding-left: 0.1rem;
-      }
-
-      .ou-label {
-        display: none;
       }
       
     }
