@@ -246,7 +246,6 @@
         <h2>💡 Une idée pour améliorer la restauration ?</h2>
         <p>Tu peux proposer une amélioration !</p>
         <form id="suggestionForm">
-        <input type="text" id="prenom" name="prenom" placeholder="Ton prénom" required>
         <textarea id="suggestion" name="suggestion" placeholder="Ta suggestion..." required></textarea>
         <button type="submit">Envoyer la suggestion</button>
         <p id="formStatus"></p>
@@ -318,11 +317,10 @@
   <script>
     document.getElementById('suggestionForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const prenom = document.getElementById('prenom').value.trim();
       const suggestion = document.getElementById('suggestion').value.trim();
       const status = document.getElementById('formStatus');
   
-      if (!prenom || !suggestion) {
+      if (!suggestion) {
         status.textContent = "Merci de remplir tous les champs.";
         status.style.color = "orange";
         return;
@@ -335,7 +333,7 @@
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          content: `📥 Nouvelle suggestion de **${prenom}** :\n${suggestion}`
+          content: `📥 Nouvelle suggestion reçue :\n${suggestion}`
         })
       })
       .then(res => {
